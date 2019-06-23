@@ -1,0 +1,90 @@
+<section fxLayoutAlign="center center" class="login-form-wrapper">
+    <mat-card fxFlex="500px" fxFlex.xs="100%" class="mat-elevation-z4 card">
+        <mat-card-title fxLayoutAlign="center center">Signup</mat-card-title>
+        <form fxLayout="column" [formGroup]="signupForm" (ngSubmit)="signup()" fxLayoutAlign="center center"
+            class="login-form" autocomplete="off">
+
+            <mat-form-field class="example-full-width">
+                <input [errorStateMatcher]="matcher" [errorStateMatcher]="matcher" type="text" matInput
+                    placeholder="User name" formControlName="userName">
+                <div class="input-err"
+                    *ngIf="signupForm.controls['userName']?.errors?.required && signupForm.controls['userName']?.touched">
+                    This is required.</div>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input [errorStateMatcher]="matcher" type="text" matInput placeholder="Name" formControlName="name">
+                <div class="input-err"
+                    *ngIf="signupForm.controls['name']?.errors?.required && signupForm.controls['name']?.touched">This
+                    is required.</div>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input [errorStateMatcher]="matcher" type="email" matInput placeholder="Email" formControlName="email">
+                <div class="input-err"
+                    *ngIf="signupForm.controls['email']?.errors?.required && signupForm.controls['email']?.touched">This
+                    is required.</div>
+                    <div class="input-err"
+                        *ngIf="signupForm.controls['email']?.errors?.email && signupForm.controls['email']?.touched">
+                        Please enter a valid email address.</div>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input [errorStateMatcher]="matcher" type="password" matInput placeholder="Password"
+                    formControlName="password">
+                <div class="input-err"
+                    *ngIf="signupForm.controls['password']?.errors?.required && signupForm.controls['password']?.touched">
+                    This is required.</div>
+                    <div class="input-err"
+                    *ngIf="signupForm.controls['password']?.errors?.minlength && signupForm.controls['password']?.touched">
+                    Password should be minimum 8 characters.</div>
+                    <div class="input-err"
+                    *ngIf="signupForm.controls['password']?.errors?.pattern && !signupForm.controls['password']?.errors?.minlength && signupForm.controls['password']?.touched">
+                    Password should be a combination of alphanumeric.</div>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input [errorStateMatcher]="matcher" type="password" matInput placeholder="Confirm password"
+                    formControlName="confirmPassword">
+                <div class="input-err"
+                    *ngIf="signupForm.controls['confirmPassword']?.errors?.required && signupForm.controls['confirmPassword']?.touched">
+                    This is required.</div>
+                    <div class="input-err"
+                    *ngIf="signupForm.controls['confirmPassword']?.errors?.minlength && signupForm.controls['confirmPassword']?.touched">
+                    Password should be minimum 8 characters.</div>
+                    <div class="input-err"
+                    *ngIf="signupForm.controls['confirmPassword']?.errors?.pattern && !signupForm.controls['confirmPassword']?.errors?.minlength && signupForm.controls['confirmPassword']?.touched">
+                    Password should be a combination of alphanumeric.</div>
+                    <div class="input-err"
+                    *ngIf="signupForm?.errors?.mismatchedPasswords && !signupForm.controls['confirmPassword']?.errors?.required && !signupForm.controls['confirmPassword']?.errors?.pattern && !signupForm.controls['confirmPassword']?.errors?.minlength && signupForm.controls['confirmPassword']?.touched">
+                    Confirm password not matching with password field.</div>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input [errorStateMatcher]="matcher" type="number" matInput placeholder="Mobile number"
+                    formControlName="mobileNumber">
+                <div class="input-err"
+                    *ngIf="signupForm.controls['mobileNumber']?.errors?.required && signupForm.controls['mobileNumber']?.touched">
+                    This is required.</div>
+                    <div class="input-err"
+                    *ngIf="signupForm.controls['mobileNumber']?.errors?.pattern && signupForm.controls['mobileNumber']?.touched">
+                    Mobile number should be 10 digits.</div>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <textarea [errorStateMatcher]="matcher" matInput placeholder="Address"
+                    formControlName="address"></textarea>
+                <div class="input-err"
+                    *ngIf="signupForm.controls['address']?.errors?.required && signupForm.controls['address']?.touched">
+                    This is required.</div>
+                    <div class="input-err"
+                    *ngIf="signupForm.controls['address']?.errors?.maxlength && signupForm.controls['address']?.touched">
+                    Address should be less then or equal to 30 characters.</div>
+            </mat-form-field>
+
+            <div class="btn-sec">
+                <button [disabled]="signupForm.invalid" mat-raised-button color="primary" type="submit">Signup</button>
+            </div>
+        </form>
+    </mat-card>
+</section>

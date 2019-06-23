@@ -1,0 +1,39 @@
+<section fxLayoutAlign="center center" class="login-form-wrapper login-space">
+  <mat-card fxFlex="500px" fxFlex.xs="100%" class="mat-elevation-z4 card">
+
+    <mat-card-title fxLayoutAlign="center center">Login</mat-card-title>
+    <form fxLayout="column" [formGroup]="loginForm" (ngSubmit)="login()" fxLayoutAlign="center center"
+      class="login-form" autocomplete="off">
+
+      <mat-form-field class="example-full-width">
+        <input [errorStateMatcher]="matcher" type="email" matInput placeholder="Email" formControlName="email">
+        <div class="input-err"
+          *ngIf="loginForm.controls['email']?.errors?.required && loginForm.controls['email']?.touched">This is
+          required.</div>
+        <div class="input-err"
+          *ngIf="loginForm.controls['email']?.errors?.email && loginForm.controls['email']?.touched">Please enter a
+          valid email address.</div>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input [errorStateMatcher]="matcher" type="password" matInput placeholder="Password" formControlName="password">
+        <div class="input-err"
+          *ngIf="loginForm.controls['password']?.errors?.required && loginForm.controls['password']?.touched">This is
+          required.</div>
+        <div class="input-err"
+          *ngIf="loginForm.controls['password']?.errors?.minlength && loginForm.controls['password']?.touched">
+          Password should be minimum 8 characters.</div>
+        <div class="input-err"
+          *ngIf="loginForm.controls['password']?.errors?.pattern && !loginForm.controls['password']?.errors?.minlength && loginForm.controls['password']?.touched">
+          Password should be a combination of alphanumeric.</div>
+      </mat-form-field>
+
+      <div class="form-btn" fxLayout="row" fxLayoutAlign="start center">
+        <div>
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+        </div>
+        <a routerLink="/signup">Create account</a>
+      </div>
+    </form>
+  </mat-card>
+</section>
